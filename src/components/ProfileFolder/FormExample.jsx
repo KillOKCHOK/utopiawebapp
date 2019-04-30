@@ -14,7 +14,6 @@ class FormExample extends React.Component {
       event.preventDefault();
       event.stopPropagation();
     }
-    console.log(event.target.value);
     this.setState({ validated: true });
 
   }

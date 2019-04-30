@@ -7,6 +7,7 @@ import ProfilePage from '../../pages/ProfilePage';
 import ContactPage from '../../pages/ContactPage';
 
 import {Container} from "react-bootstrap";
+import pageToTry from '../../pages/pageToTry';
 
 let ContentComponent = (props) =>{
 
@@ -20,6 +21,7 @@ let ContentComponent = (props) =>{
                     <Route exact path='/orders' component={OrderPage}/>
                     <Route exact path='/profile' component={ProfilePage}/>
                     <Route exact path='/contact' component={ContactPage}/>
+                    <Route exact path='/test' component={pageToTry}/>
                     {/* <Route path='/home' render={(props) => (<Books {...props} bookList={this.state.bookList} />)}/> */}
                 </Switch>
             </Container>

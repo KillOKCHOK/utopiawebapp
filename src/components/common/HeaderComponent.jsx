@@ -51,6 +51,7 @@ class HeaderComponent extends React.Component{
             <Nav>
             <Nav.Link href="/contact">@Contact</Nav.Link>
             <Nav.Link href="/flights">Flights</Nav.Link>
+            <Nav.Link href="/test">Test</Nav.Link>
             <Nav.Link eventKey={2} onClick={signOut}>
                 {LoginButton.sign} 
             </Nav.Link>

@@ -1,9 +1,6 @@
 import React from 'react'
 import BookingFormComponent from './BookingFormComponent'
 
-
-
-
 class BookingComponent extends React.Component {
     constructor(props) {
         super(props);

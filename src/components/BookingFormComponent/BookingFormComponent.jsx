@@ -2,9 +2,6 @@ import React from 'react';
 
 import {Form,Col,Button} from "react-bootstrap";
 
-
-
-
 class BookingFormComponent extends React.Component {
     constructor(props) {
         super(props);
