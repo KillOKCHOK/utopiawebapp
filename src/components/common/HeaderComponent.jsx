@@ -6,13 +6,8 @@ import {NavLink} from 'react-router-dom';
 import{testvalidation} from '../../store/actions/formValidationActions';
 
 class HeaderComponent extends React.Component{
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {  };
-    // }
 
     render(){
-        // console.log("hello"+JSON.stringify(this.props));
 
     let LoginButton = {
         sign:this.props.user.loggedIn?'Sign out':'Sign in',
@@ -41,7 +36,6 @@ class HeaderComponent extends React.Component{
 
     let signInOut = (e)=>{
         e.preventDefault();
-        console.log(this.props.user.loggedIn);
         if(!this.props.user.loggedIn) doLogIn(); 
         else if (this.props.user.loggedIn) doLogOut(); 
     }
@@ -50,26 +44,17 @@ class HeaderComponent extends React.Component{
         <div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             
-        <Navbar.Brand > <NavLink to="/home" className="active">Utopia Airlines</NavLink></Navbar.Brand>
+        <Navbar.Brand> <NavLink exact to="/">Utopia Airlines</NavLink></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
             {userButtons}
-            {/* <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-            </NavDropdown> */}
             </Nav>
             <Nav>
             <NavLink to="/contact">@Contact</NavLink>
             <NavLink to="/flights">Flights</NavLink>
             <NavLink to="/test">Test</NavLink>
-            <NavLink eventKey={2} onClick={signInOut}>
+            <NavLink  eventKey={2} onClick={signInOut} to='/login'>
                 {LoginButton.sign} 
             </NavLink>
             </Nav>

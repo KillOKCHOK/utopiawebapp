@@ -16,7 +16,6 @@ let ContentComponent = (props) =>{
             <Container>
                 <Switch>
                     <Route exact path='/' component={SearchFlightPage}/>
-                    <Route exact path='/home' component={SearchFlightPage}/>
                     <Route exact path='/flights' component={FlightListPage}/>
                     <Route exact path='/orders' component={OrderPage}/>
                     <Route exact path='/profile' component={ProfilePage}/>

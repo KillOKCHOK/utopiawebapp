@@ -16,3 +16,40 @@ body{
     padding-top: 10%;
     text-align: center;
 }
+
+nav>*> .active{
+    color: white;
+}
+
+nav>*>*>*{
+    padding-right: 5%;
+}
+
+nav>*>*> .active{
+    color: white;
+}
+
+
+nav>span>a {
+    color: rgb(141, 142, 143);
+    text-decoration: none;
+}
+
+nav>span>a:hover 
+{
+     color:#00A0C6; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
+nav>div>div>a {
+    color: rgb(141, 142, 143);
+    text-decoration: none;
+}
+
+nav>div>div>a:hover 
+{
+     color:#00A0C6; 
+     text-decoration:none; 
+     cursor:pointer;  
+}

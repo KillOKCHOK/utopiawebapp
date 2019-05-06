@@ -19,6 +19,7 @@ class FormToTry extends React.Component {
       if (form.checkValidity() === false) {
         event.preventDefault();
         event.stopPropagation();
+        this.props.testvalidate({ validated: true });
       }else{
         // console.log("true");
         event.preventDefault();
@@ -33,22 +34,19 @@ class FormToTry extends React.Component {
         
         // console.log({user:user});
         // console.log(this.props);
-        // this.props.history.push('/home');
+        this.props.history.push('/home');
         // alert("VALIDATED");
         // console.log("VALIDATED");
         this.props.testvalidate({ validated: false });
     }
     event.preventDefault();
     event.stopPropagation();
-    
-    this.props.testvalidate({ validated: true });
-    
 }
 
 render() {
   const {validated} = this.props.validated;
-  console.log("validated");
-  console.log(validated);
+  // console.log("validated");
+  // console.log(validated);
     // console.log(this.props);
     return (
         <div>
