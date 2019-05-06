@@ -3,15 +3,31 @@ import HeaderComponent from './components/common/HeaderComponent';
 import ContentComponent from './components/common/ContentComponent';
 // import FooterComponent from './components/common/FooterComponent';
 import '../src/styles/style.css';
+import {connect} from "react-redux";
+import{login,logout} from './store/actions/mockLoginAction';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <HeaderComponent></HeaderComponent>
+      <HeaderComponent user={props.user}></HeaderComponent>
       <ContentComponent></ContentComponent>
       {/* <FooterComponent></FooterComponent> */}
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state)=>{
+  return{
+    user:state.auth.user,
+  }
+};
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    logout:()=>{dispatch(logout())},
+    login:(user)=>{dispatch(login(user))}
+  }
+}  ;
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

@@ -8,7 +8,7 @@ let pageToTry = (props) =>{
     return(
         <div className="my-3 ">
             <br></br>
-           <FormToTry { ...props}/> 
+           <FormToTry validated={false} {...props}/> 
         </div>
     );
 

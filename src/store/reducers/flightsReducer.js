@@ -9,9 +9,9 @@ const initState = {
     ],
 }
 
-const rootReducer = (state=initState,action) => {
+const flightsReducer = (state=initState,action) => {
     return state;
 }
 
 
-export default rootReducer;
+export default flightsReducer;
