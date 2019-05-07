@@ -2,16 +2,11 @@ import React from 'react';
 
 import {Table} from "react-bootstrap";
 
-
-
-
 class OrdersComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {  };
     }
-    
-    
     
     render() {
         

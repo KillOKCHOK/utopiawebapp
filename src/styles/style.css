@@ -53,3 +53,18 @@ nav>div>div>a:hover
      text-decoration:none; 
      cursor:pointer;  
 }
+
+.mydatepickerClass{
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%         !important;
+}
+
+.react-datepicker-wrapper{
+    width: 100%         !important;
+}
+
+.react-datepicker__input-container{
+    width: 100%         !important;
+}
+

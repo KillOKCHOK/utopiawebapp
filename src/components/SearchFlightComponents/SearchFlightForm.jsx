@@ -1,16 +1,66 @@
 import React from 'react';
-
 import {Form,Col,Button,Row} from "react-bootstrap";
+import {connect} from "react-redux";
+import{login,logout} from '../../store/actions/mockLoginAction';
+import{testvalidation} from '../../store/actions/formValidationActions';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-let SearchFlightForm = (props) =>{
+
+class SearchFlightForm extends React.Component {
+
+    oneWayTripType = false;
+
+    componentDidMount=()=>{
+        this.oneWayTripType = document.getElementById('formHorizontalRadios1').checked;
+        console.log(this.oneWayTripType);
+    }
+
+    handleDateChange=(e)=>{
+        console.log(Date(e).toISO);
+    }
+
+    tripTypeChange = () => {
+        console.log(document.getElementById('formHorizontalRadios1').checked);
+        this.oneWayTripType = document.getElementById('formHorizontalRadios1').checked;
+        return null;
+    }
+
+    handleSubmit = (event) => {
+        const form = event.currentTarget;
+        // alert(form.formOneOrRoundId);
+        // console.log(form.formHorizontalRadios.checked);
+        // console.log(form.formHorizontalRadios1.checked);
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        //   this.props.testvalidate({ validated: true });
+        }else{
+          event.preventDefault();
+          event.stopPropagation();
+          let fromCity = form.formGridCity1.value;
+          let toCity = form.toGridCity2.value;
+          this.oneWayTripType = form.formHorizontalRadios1.checked;
+        //   user.fname = event.currentTarget.validationCustom01.value;
+        //   user.lname = event.currentTarget.validationCustom02.value;
+        //   user.username = event.currentTarget.validationCustomUsername.value;
+        //   this.props.history.push('/flights');
+        //   this.props.testvalidate({ validated: false });
+      }
+  };
+
+  render(){
 
     return(
-        <div>
-        <Form>
+        <Form
+            noValidate
+            validated={true}
+            onSubmit={e => this.handleSubmit(e)}>
         <br/>
-            <Form.Row>
-                <Form.Group as={Row}>
-                        <Form.Check
+                <Form.Group as={Row} controlId="formOneOrRoundId">
+                        {/* <Form.Label>One-way</Form.Label> */}
+                        {/* <Form.Control as="checkbox"></Form.Control> */}
+                        <Form.Check onClick={e=>this.tripTypeChange(e)}
                         className="px-4"
                         inline
                         type="radio"
@@ -19,35 +69,85 @@ let SearchFlightForm = (props) =>{
                         name="formHorizontalRadios"
                         id="formHorizontalRadios1"
                         />
-                        <Form.Check
+                        <Form.Check onClick={e=>this.tripTypeChange(e)}
                         inline
                         type="radio"
                         label="Roundtrip"
                         name="formHorizontalRadios"
                         id="formHorizontalRadios2"
                         />
+                        
                 </Form.Group>
-            </Form.Row>
 
             <Form.Row>
-                <Form.Group as={Col} controlId="formGridCity">
+                <Form.Group as={Col} controlId="formGridCity1">
                     <Form.Label>From</Form.Label>
-                    <Form.Control></Form.Control>
+                    <Form.Control type="text" placeholder="City" required />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a valid city or airport.
+                    </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridCity">
-                    <Form.Label>To</Form.Label>
-                    <Form.Control ></Form.Control>
+                <Form.Group as={Col} controlId="toGridCity2">
+                <Form.Label>From</Form.Label>
+                    <Form.Control type="text" placeholder="City" required />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a valid city or airport.
+                    </Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
 
-            <Form.Row>
-                <Form.Group as={Col} controlId="formGridDate">
-                    <Form.Label>Dates*</Form.Label>
-                    <Form.Control></Form.Control>
+            
+                {this.oneWayTripType?
+                (<Form.Row>
+                    <Form.Group as={Col} md="6" controlId="formGridDate">
+                        <Form.Label >Flight Date</Form.Label>
+                        <br/>
+                        <DatePicker className="text-center form-control mydatepickerClass"
+                            selected={new Date()}
+                            onChange={this.handleDateChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" controlId="formGridCity">
+                        <Form.Label>Travelers</Form.Label>
+                        <Form.Control as="select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Form.Row>)
+                :
+                (<Form.Row>
+                <Form.Group as={Col} md="3" controlId="formGridDate">
+                    <Form.Label className="px-2 pr-3">Flight #1</Form.Label>
+                    <DatePicker className="form-control mydatepickerClass"
+                            selected={new Date()}
+                            onChange={this.handleDateChange}
+                            required
+                        />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide flight date.
+                    </Form.Control.Feedback>
                 </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridCity">
+                <Form.Group as={Col} md="3" controlId="formGridDate">
+                    <Form.Label className="px-2 pr-3">Flight #2</Form.Label>
+                    <DatePicker className=" form-control mydatepickerClass"
+                            selected={new Date()}
+                            onChange={this.handleDateChange}
+                            required
+                        />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide flight date.
+                    </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="6" controlId="formGridCity">
                     <Form.Label>Travelers</Form.Label>
                     <Form.Control as="select">
                     <option>1</option>
@@ -60,7 +160,10 @@ let SearchFlightForm = (props) =>{
                     <option>8</option>
                     </Form.Control>
                 </Form.Group>
-            </Form.Row>
+            </Form.Row>)
+                }
+
+                
             <Form.Row>
             <Form.Group as={Col} >
                     <Form.Label>Travelers</Form.Label>
@@ -68,7 +171,6 @@ let SearchFlightForm = (props) =>{
                         <option>Economy</option>
                         <option>Premium Economy</option>
                         <option>Business or First</option>
-                        
                     </Form.Control>
             </Form.Group>
             <Form.Group as={Col} >
@@ -78,10 +180,22 @@ let SearchFlightForm = (props) =>{
             </Form.Row>
             
         </Form>
-
-        </div>
     );
-
+    }
 }
-export default SearchFlightForm;
 
+const mapStateToProps = (state)=>{
+    return{
+      user:state.auth.user,
+      validated:state.testvalid.testValidation,
+    }
+  }
+
+  const mapDispatchToProps = (dispatch)=>{
+    return{
+      logout:()=>{dispatch(logout())},
+      login:(user)=>{dispatch(login(user))},
+      testvalidate:(val)=>{dispatch(testvalidation(val))}
+    }
+  }  
+export default connect(mapStateToProps,mapDispatchToProps)(SearchFlightForm);

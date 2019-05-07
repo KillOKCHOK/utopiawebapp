@@ -34,7 +34,7 @@ class FormToTry extends React.Component {
         
         // console.log({user:user});
         // console.log(this.props);
-        this.props.history.push('/home');
+        this.props.history.push('/');
         // alert("VALIDATED");
         // console.log("VALIDATED");
         this.props.testvalidate({ validated: false });
