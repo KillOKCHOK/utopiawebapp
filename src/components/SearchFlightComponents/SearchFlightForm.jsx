@@ -5,6 +5,7 @@ import{login,logout} from '../../store/actions/mockLoginAction';
 import{testvalidation} from '../../store/actions/formValidationActions';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {listAirports} from '../../store/actions/airportActions'
 
 
 class SearchFlightForm extends React.Component {
@@ -13,11 +14,14 @@ class SearchFlightForm extends React.Component {
 
     componentDidMount=()=>{
         this.oneWayTripType = document.getElementById('formHorizontalRadios1').checked;
-        console.log(this.oneWayTripType);
+        
+        // console.log("!!!!!!!!!!!!!!!!"+JSON.stringify(this.oneWayTripType));
     }
-
+    
     handleDateChange=(e)=>{
-        console.log(Date(e).toISO);
+        this.props.listAirports("bos");
+        console.log(this.props.fromAirport);
+        console.log(Date(e));
     }
 
     tripTypeChange = () => {
@@ -41,6 +45,7 @@ class SearchFlightForm extends React.Component {
           let fromCity = form.formGridCity1.value;
           let toCity = form.toGridCity2.value;
           this.oneWayTripType = form.formHorizontalRadios1.checked;
+          
         //   user.fname = event.currentTarget.validationCustom01.value;
         //   user.lname = event.currentTarget.validationCustom02.value;
         //   user.username = event.currentTarget.validationCustomUsername.value;
@@ -97,7 +102,7 @@ class SearchFlightForm extends React.Component {
                 </Form.Group>
             </Form.Row>
 
-            
+            {/* https://reactdatepicker.com/#example-7 react-datepicker docs */}
                 {this.oneWayTripType?
                 (<Form.Row>
                     <Form.Group as={Col} md="6" controlId="formGridDate">
@@ -188,6 +193,7 @@ const mapStateToProps = (state)=>{
     return{
       user:state.auth.user,
       validated:state.testvalid.testValidation,
+      fromAirport:state.airReduc.airportList,
     }
   }
 
@@ -195,7 +201,8 @@ const mapStateToProps = (state)=>{
     return{
       logout:()=>{dispatch(logout())},
       login:(user)=>{dispatch(login(user))},
-      testvalidate:(val)=>{dispatch(testvalidation(val))}
+      testvalidate:(val)=>{dispatch(testvalidation(val))},
+      listAirports:(param)=>{dispatch(listAirports(param))},
     }
   }  
 export default connect(mapStateToProps,mapDispatchToProps)(SearchFlightForm);
