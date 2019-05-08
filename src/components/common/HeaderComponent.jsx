@@ -1,9 +1,9 @@
 import React from 'react';
-import {Navbar, Nav} from 'react-bootstrap'; /*, NavDropdown*/
 import {connect} from "react-redux";
-import{login,logout} from '../../store/actions/mockLoginAction';
 import {NavLink} from 'react-router-dom';
-import{testvalidation} from '../../store/actions/formValidationActions';
+import {Navbar, Nav} from 'react-bootstrap'; /*, NavDropdown*/
+import{login,logout} from '../../store/actions/mock/mockLoginAction';
+import{testvalidation} from '../../store/actions/mock/formValidationActions';
 
 class HeaderComponent extends React.Component{
 
@@ -54,7 +54,7 @@ class HeaderComponent extends React.Component{
             <NavLink to="/contact">@Contact</NavLink>
             <NavLink to="/flights">Flights</NavLink>
             <NavLink to="/test">Test</NavLink>
-            <NavLink  eventKey={2} onClick={signInOut} to='/login'>
+            <NavLink  eventkey={2} onClick={signInOut} to='/login'>
                 {LoginButton.sign} 
             </NavLink>
             </Nav>

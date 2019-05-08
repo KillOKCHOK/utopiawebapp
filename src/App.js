@@ -4,7 +4,7 @@ import ContentComponent from './components/common/ContentComponent';
 // import FooterComponent from './components/common/FooterComponent';
 import '../src/styles/style.css';
 import {connect} from "react-redux";
-import{login,logout} from './store/actions/mockLoginAction';
+import{login,logout} from './store/actions/mock/mockLoginAction';
 
 function App(props) {
   return (

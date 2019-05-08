@@ -2,8 +2,8 @@ import React from 'react';
 import {Form,InputGroup,Button, Col} from 'react-bootstrap';
 
 import {connect} from "react-redux";
-import{login,logout} from '../store/actions/mockLoginAction';
-import{testvalidation} from '../store/actions/formValidationActions';
+import{login,logout} from '../../store/actions/mock/mockLoginAction';
+import{testvalidation} from '../../store/actions/mock/formValidationActions';
 
 class FormToTry extends React.Component {
     // constructor(props, ...args) {

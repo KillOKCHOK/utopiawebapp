@@ -7,7 +7,7 @@ import ProfilePage from '../../pages/ProfilePage';
 import ContactPage from '../../pages/ContactPage';
 
 import {Container} from "react-bootstrap";
-import pageToTry from '../../pages/pageToTry';
+import pageToTry from '../../pages/mock/pageToTry';
 
 let ContentComponent = (props) =>{
 

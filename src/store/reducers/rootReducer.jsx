@@ -1,14 +1,12 @@
-import authReducer from './authReducer';
-import flightsReducer from './flightsReducer';
-import testFormValid from './formValidationReducers';
-import airportReducer from './airportReducers.js';
+import authReducer from './mock/authReducer';
+import testFormValid from './mock/formValidationReducers';
+import searchFlightReducer from './searchFlightsReducer';
 import {combineReducers} from "redux";
 
 const rootReducer = combineReducers({
     auth:authReducer,
-    flights:flightsReducer,
     testvalid:testFormValid,
-    airReduc:airportReducer
+    searchFlightReducer:searchFlightReducer,
 })
 
 
