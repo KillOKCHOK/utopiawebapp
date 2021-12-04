@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap'; /*, NavDropdown*/
 import{login,logout} from '../../store/actions/mock/mockLoginAction';
 import{testvalidation} from '../../store/actions/mock/formValidationActions';
+import {withRouter} from 'react-router';
 
 class HeaderComponent extends React.Component{
 
@@ -23,19 +24,18 @@ class HeaderComponent extends React.Component{
     }
 
     let doLogOut = () => {
-        alert('logout');
         this.props.testvalidate({ validated: false });
         this.props.logout();
     }
 
     let doLogIn = () => {
-        alert('login');
-        let user={loggedIn:false};
+        let user={loggedIn:true};
         this.props.login(user);
     }
 
     let signInOut = (e)=>{
-        e.preventDefault();
+        // e.preventDefault();
+        console.log(this.props)
         if(!this.props.user.loggedIn) doLogIn(); 
         else if (this.props.user.loggedIn) doLogOut(); 
     }
@@ -54,7 +54,7 @@ class HeaderComponent extends React.Component{
             <NavLink to="/contact">@Contact</NavLink>
             <NavLink to="/flights">Flights</NavLink>
             <NavLink to="/test">Test</NavLink>
-            <NavLink  eventkey={2} onClick={signInOut} to='/login'>
+            <NavLink eventkey={2} onClick={signInOut} className={this.props.location.pathname==='/logout'||this.props.location.pathname==='/login'?'active':''} to={LoginButton.link} style={{ minWidth:"100px"}}>
                 {LoginButton.sign} 
             </NavLink>
             </Nav>
@@ -66,6 +66,8 @@ class HeaderComponent extends React.Component{
 
 }
 const mapStateToProps = (state)=>{
+    // console.log("state:");
+    // console.log(state);
     return{
       user:state.auth.user,
     }
@@ -80,4 +82,4 @@ const mapStateToProps = (state)=>{
   }  
   
   
-export default connect(mapStateToProps,mapDispatchToProps)(HeaderComponent);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(HeaderComponent));

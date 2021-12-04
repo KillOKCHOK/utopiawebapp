@@ -6,6 +6,7 @@ import '../src/styles/style.css';
 import {connect} from "react-redux";
 import{login,logout} from './store/actions/mock/mockLoginAction';
 
+
 function App(props) {
   return (
     <div className="App">
